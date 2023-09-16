@@ -17,7 +17,8 @@ Webbased reader/writer for mifare classic cards using ESP8266 (D1 mini) &amp; MF
 | 3V3 | 3.3V |
 | G | GND |
 
-![](https://github.com/elbuit/mfrc522cli/blob/main/mfrc522_cli_bb.png)
+
+![Wiring](docs/images/wiring.png)
 
 ## Flashing the firmware
 1. Connect ESP8266 (D1 mini) to your computer via USB
