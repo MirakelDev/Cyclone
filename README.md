@@ -9,11 +9,13 @@ Webbased reader/writer for mifare classic cards using ESP8266 (D1 mini) &amp; MF
 ## Wiring ESP8266 (D1 mini) and MFRC522 
 | ESP8266 (D1 mini) | MFRC522 |
 | -------- | ------- |
-| RST | D4 |
-| MISO | D6 |
-| MOSI | D7 |
-| SCK | D5 |
-| SDA | D8 |
+| D4 | RST |
+| D5 | SCK |
+| D6 | MISO |
+| D7 | MOSI |
+| D8 | SDA |
+| 3V3 | 3.3V |
+| G | GND |
 
 ![](https://github.com/elbuit/mfrc522cli/blob/main/mfrc522_cli_bb.png)
 
