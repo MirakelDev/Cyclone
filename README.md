@@ -2,7 +2,7 @@
 Webbased reader/writer for mifare classic cards using ESP8266 (D1 mini) &amp; MFRC522
 
 ## Features
-- read cards with DEFAULT_KEY and toy keys
+- read cards/toys with DEFAULT_KEY and toy keys
 - write dumps to Magic cards (Gen 1)
 - use Cyclone access point or connect to your local wifi network
 
