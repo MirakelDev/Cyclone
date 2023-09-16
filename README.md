@@ -6,6 +6,25 @@ Webbased reader/writer for mifare classic cards using ESP8266 (D1 mini) &amp; MF
 - write dumps to Magic cards (Gen 1)
 - use Cyclone access point or connect to your local wifi network
 
+## Screenshots of Cyclone Webinterface
+**!!! Cyclone Webinterface currently lacks information texts !!!**
+<details><summary>Home tab with expanded Navbar</summary>
+ 
+![Screenshot_01](docs/images/screenshot_01.png)
+</details>
+<details><summary>Read tab: Read/download dump of current card</summary>
+ 
+![Screenshot_02](docs/images/screenshot_02.png)
+</details>
+<details><summary>Write tab: Write dump to current card (only Magic cards / Gen 1)</summary>
+ 
+![Screenshot_03](docs/images/screenshot_03.png)
+</details>
+<details><summary>Settings tab: Connect Cyclone to your local wifi network</summary>
+ 
+![Screenshot_04](docs/images/screenshot_04.png)
+</details>
+
 ## Wiring ESP8266 (D1 mini) and MFRC522 
 | ESP8266 (D1 mini) | MFRC522 |
 | -------- | ------- |
