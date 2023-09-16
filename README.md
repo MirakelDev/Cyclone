@@ -66,7 +66,7 @@ Changed
 </details>
 
 7. Change Flash Address to `0x0`
-8. Choose File `Cyclone_v0.0.1.bin`
+8. Choose File `Cyclone_vX.Y.Z.bin`
 9. Click `Program` button
 10. Wait until flashing process is completed
 <details><summary>Output should look like:</summary>
