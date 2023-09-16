@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cyclone</title>
+    <link rel="icon" type="image/png" href="icon-128x128.png">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="fontawesome.min.css" rel="stylesheet">
+    <link href="styles.min.css" rel="stylesheet">
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script>
+      window.onload = function(){
+        $.get("navbar.html", function(data){
+          $("#common-navbar").html(data);
+          $(".navbar-nav").find("#navHome").addClass("active");
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="common-navbar"></div>
+    <main class="container pt-3">
+      <div class="jumbotron">
+        Home
+      </div>
+    </main>
+  </body>
+</html>

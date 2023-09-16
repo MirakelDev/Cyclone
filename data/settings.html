@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cyclone</title>
+    <link rel="icon" type="image/png" href="icon-128x128.png">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="fontawesome.min.css" rel="stylesheet">
+    <link href="styles.min.css" rel="stylesheet">
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="Bs5Utils.js"></script>
+  </head>
+  <body>
+    <div id="common-navbar"></div>
+    <main class="container pt-3">
+      <div class="jumbotron">
+        <form id="formSettings">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputSsid" name="ssid" placeholder="SSID">
+            <label for="inputSsid">SSID</label>
+          </div>
+          <div class="input-group mb-3">
+            <div class="form-floating">
+              <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+              <label for="inputPassword">Password</label>
+            </div>
+            <span class="input-group-text" id="togglePassword" role="button">
+              <i class="fa-solid fa-fw fa-eye" id="togglePasswordIcon"></i>
+            </span>
+          </div>
+          <button type="submit" class="btn btn-dark mb-3" id="btnSubmit">Save & Restart</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      window.onload = function(){
+        $.get("navbar.html", function(data){
+          $("#common-navbar").html(data);
+          $(".navbar-nav").find("#navSettings").addClass("active");
+        });
+        $.getJSON( "/settings")  
+          .done(function(json) {
+            for (var name in json) {
+              $("input[name='"+name+"']").val(json[name]);
+            }
+          });
+        $("#togglePassword").click(function (e) {
+          if ($("#inputPassword").attr("type") == "password"){
+            $("#togglePasswordIcon").removeClass("fa-eye");
+            $("#togglePasswordIcon").addClass("fa-eye-slash");
+            $("#inputPassword").attr("type","text");
+          }else {
+            $("#togglePasswordIcon").removeClass("fa-eye-slash");
+            $("#togglePasswordIcon").addClass("fa-eye");
+            $("#inputPassword").attr("type","password");
+          }
+        });
+      }
+    </script>
+    <script>
+      $(function () {
+        const bs5Utils = new Bs5Utils();
+        $("#formSettings").on("submit", function (event) {
+          event.preventDefault();
+          const formData = new FormData(event.target);
+          const data = Object.fromEntries(formData.entries());
+          $("#btnSubmit").prop("disabled", true);
+          $.ajax({
+            type: "POST",
+            url: "/settings",
+            data: JSON.stringify(data),
+            processData: false,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            timeout: 600000
+          })
+          .done(function (data) {
+            $("#btnSubmit").prop("disabled", false);
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            $("#btnSubmit").prop("disabled", false);
+          });
+        });
+      });
+    </script>
+    <script>
+      if (!!window.EventSource) {
+        const bs5Utils = new Bs5Utils();
+        var source = new EventSource("/events");
+        source.addEventListener("open", function(e) {
+          console.log("Events Connected");
+        }, false);
+        source.addEventListener("error", function(e) {
+          if (e.target.readyState != EventSource.OPEN) {
+            console.log("Events Disconnected");
+          }
+        }, false);
+        source.addEventListener("settings_success", function(e) {
+          bs5Utils.Snack.show("success", e.data, 3000, true);
+        }, false);
+        source.addEventListener("settings_warning", function(e) {
+          bs5Utils.Snack.show("warning", e.data, 3000, true);
+        }, false);
+        source.addEventListener("settings_error", function(e) {
+          bs5Utils.Snack.show("danger", e.data, 3000, true);
+        }, false);
+      }
+    </script>
+  </body>
+</html>
